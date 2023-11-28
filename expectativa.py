@@ -4,118 +4,140 @@ import matplotlib.pyplot as plt
 # Abrindo o arquivo csv
 df = pd.read_csv('expectativa_vida.csv')
 
-# EXPECTATIVA DE VIDA NO BRASIL vs MUNDO
+# Filtrar os dados para os países de interesse
+paises_interesse = ['Brazil', 'Japan', 'Switzerland', 'Australia', 'Spain', 'France']
 
-# Definindo o Brasil como o país de referência
-df_brasil = df[df['Country'] == 'Brazil']
+# Filtrar os dados para os países de interesse
+df_interesse = df[df['Country'].isin(paises_interesse)]
 
-# Criando a média mundial
-df_media_mundial = df.groupby('Year')['Life expectancy'].mean().reset_index()
+# Calcular a média mundial da expectativa de vida
+media_mundial = df['Life expectancy'].mean()
 
-# Configurando o tamanho do gráfico
+# Configurar o tamanho do gráfico
 plt.figure(figsize=(10, 6))
 
-# Plotando o gráfico comparativo
-plt.plot(df_media_mundial['Year'], df_media_mundial['Life expectancy'], label='Média Mundial', color='red', linewidth=5)
-plt.plot(df_brasil['Year'], df_brasil['Life expectancy'], label='Brasil', color='green', linewidth=5)
+# Plotar a expectativa de vida em relação aos anos para cada país
+for pais in paises_interesse:
+    df_pais = df_interesse[df_interesse['Country'] == pais]
+    if pais == 'Brazil':
+        plt.plot(df_pais['Year'], df_pais['Life expectancy'], label=pais, color='black', linewidth=5)
+    else:
+        plt.plot(df_pais['Year'], df_pais['Life expectancy'], label=pais)
 
-# Adicionando rótulos e título ao gráfico
-plt.xlabel('Ano')
-plt.ylabel('Expectativa de Vida (%)')
-plt.title('Expectativa de Vida no Brasil comparado com o mundo')
-plt.legend()
+# Plotar a média mundial como uma linha no gráfico
+plt.axhline(media_mundial, color='red', linestyle='--', label='Média Mundial')
 
-# Ajustando os valores mostrados no gráfico
-plt.xticks(df_brasil['Year'])
-plt.yticks(range(0, 101, 5))
-plt.grid(True)
-
-# Mostrando
-plt.show()
-
-# TOP 5 PAISES COM MAIOR EXPECTATIVA DE VIDA vs BRASIL
-# Agrupando os dados por país e calculando a média da expectativa de vida para cada país
-df_media_paises = df.groupby('Country')['Life expectancy'].mean().reset_index()
-
-# Ordenando o DataFrame em ordem decrescente com base na coluna 'Life expectancy'
-df_media_paises = df_media_paises.sort_values('Life expectancy', ascending=False)
-
-# Selecionando os 5 primeiros países
-top_5_paises = df_media_paises.head(5)
-
-# Filtrando o DataFrame original apenas para os países selecionados
-df_top_paises = df[df['Country'].isin(top_5_paises['Country'])]
-
-# Configurando o tamanho do gráfico
-plt.figure(figsize=(10, 6))
-
-plt.plot(df_brasil['Year'], df_brasil['Life expectancy'], label='Brasil', color='green', linewidth=5)
-
-# Plotando um gráfico de linhas para mostrar a expectativa de vida de cada país
-for pais in top_5_paises['Country']:
-    df_pais = df_top_paises[df_top_paises['Country'] == pais]
-    plt.plot(df_pais['Year'], df_pais['Life expectancy'], label=pais)
-
-# Adicionando rótulos e título ao gráfico
+# Adicionar rótulos e título ao gráfico
 plt.xlabel('Ano')
 plt.ylabel('Expectativa de Vida')
-plt.title('5 Países com Maior Expectativa de Vida')
+plt.title('Comparação da Expectativa de Vida ao longo do tempo')
 plt.legend()
-plt.yticks(range(0, 101, 5))
 plt.grid(True)
 
-# Exibindo o gráfico
+# Exibir o gráfico
 plt.show()
 
-# MORTES DE CRIANÇAS NO BRASIL E NO MUNDO
+import matplotlib.pyplot as plt
 
-# Filtrando os dados para obter as mortes infantis do Brasil e da média mundial
-df_brasil = df[df['Country'] == 'Brazil']
-df_mundial_media = df.groupby('Year')['Infant deaths'].mean().reset_index()
+# Filtrar os dados para os países de interesse
+paises_interesse = ['Brazil', 'India', 'Nigeria', 'Pakistan', 'Democratic Republic of the Congo', 'Angola']
 
-# Configurando o tamanho do gráfico
+# Filtrar os dados para os países de interesse
+df_interesse = df[df['Country'].isin(paises_interesse)]
+
+# Calcular a média mundial de mortes infantis
+media_mundial = df['Infant deaths'].mean()
+
+# Configurar o tamanho do gráfico
 plt.figure(figsize=(10, 6))
 
-# Plotando as linhas das mortes infantis do Brasil e da média mundial
-plt.plot(df_brasil['Year'], df_brasil['Infant deaths'], label='Brasil', linewidth=5, color='green')
-plt.plot(df_mundial_media['Year'], df_mundial_media['Infant deaths'], label='Média Mundial', linewidth=5, color='red')
+# Plotar as mortes infantis em relação aos anos para cada país
+for pais in paises_interesse:
+    df_pais = df_interesse[df_interesse['Country'] == pais]
+    if pais == 'Brazil':
+        plt.plot(df_pais['Year'], df_pais['Infant deaths'], label=pais, color='black', linewidth=5)
+    else:
+        plt.plot(df_pais['Year'], df_pais['Infant deaths'], label=pais)
 
-# Adicionando rótulos e título ao gráfico
+# Plotar a média mundial como uma linha no gráfico
+plt.axhline(media_mundial, color='red', linestyle='--', label='Média Mundial')
+
+# Adicionar rótulos e título ao gráfico
 plt.xlabel('Ano')
 plt.ylabel('Mortes Infantis')
-plt.title('Mortes Infantis no Brasil vs Média Mundial')
+plt.title('Comparação das Mortes Infantis ao longo do tempo')
 plt.legend()
 plt.grid(True)
 
-# Exibindo o gráfico
+# Exibir o gráfico
 plt.show()
 
-# 10 paises com mais mortes de crianças
+# IDH POR PAÍSES DESENVOLVIDOS E SUBDESENVOLVIDOS
 
-# Agrupando os dados por país e calculando o total de mortes infantis para cada país
-df_total_mortes_por_pais = df.groupby(['Country', 'Year'])['Infant deaths'].sum().reset_index()
+# Filtrar os dados para os países de interesse
+paises_interesse = ['Brazil', 'United States', 'Germany', 'China', 'Afghanistan', 'Ethiopia']
 
-# Selecionando os 5 países com mais mortes infantis
-top_5_paises_mortes = df_total_mortes_por_pais.groupby('Country')['Infant deaths'].sum().nlargest(5).index
+# Filtrar os dados para os países de interesse
+df_interesse = df[df['Country'].isin(paises_interesse)]
 
-# Filtrando o DataFrame original apenas para os países selecionados
-df_top_5_paises_mortes = df_total_mortes_por_pais[df_total_mortes_por_pais['Country'].isin(top_5_paises_mortes)]
+# Configurar o tamanho do gráfico
+plt.figure(figsize=(10, 6))
 
-# Configurando o tamanho do gráfico
-plt.figure(figsize=(12, 6))
+# Plotar o IDH em relação aos anos para cada país
+for pais in paises_interesse:
+    df_pais = df_interesse[df_interesse['Country'] == pais]
+    
+    if pais == 'Brazil':
+        plt.plot(df_pais['Year'], df_pais['Income composition of resources'], label=pais, color='black', linewidth=5)
+    else:
+        plt.plot(df_pais['Year'], df_pais['Income composition of resources'], label=pais)
 
-# Plotando o gráfico de linhas para cada país
-for pais in top_5_paises_mortes:
-    df_pais = df_top_5_paises_mortes[df_top_5_paises_mortes['Country'] == pais]
-    plt.plot(df_pais['Year'], df_pais['Infant deaths'], label=pais)
-
-# Adicionando rótulos e título ao gráfico
+# Adicionar rótulos e título ao gráfico
 plt.xlabel('Ano')
-plt.ylabel('Mortes Infantis')
-plt.title('Evolução das Mortes Infantis dos 5 Países com Mais Mortes')
-
-# Exibindo a legenda
+plt.ylabel('IDH')
+plt.title('Evolução do IIDH ao longo dos anos para países desenvolvidos e subdesenvolvidos')
 plt.legend()
+plt.grid(True)
 
-# Exibindo o gráfico
+# Exibir o gráfico
+plt.show()
+
+# GASTOS COM SAÚDE E EXPECTATIVA DE VIDA
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Filtrar os dados para o ano de 2014
+df_2014 = df[df['Year'] == 2014]
+
+# Calcular a porcentagem de gastos com saúde em relação ao PIB per capita
+df_2014['expenditure percentage'] = df_2014['percentage expenditure'] / df_2014['GDP'] * 100
+
+# Filtrar as colunas relevantes para o gráfico
+df_plot = df_2014[['expenditure percentage', 'Life expectancy']]
+
+# Plotar o gráfico
+plt.figure(figsize=(10, 6))
+plt.scatter(df_plot['expenditure percentage'], df_plot['Life expectancy'])
+plt.xlabel('Porcentagem de gastos com saúde em relação ao PIB per capita (%)')
+plt.ylabel('Expectativa de Vida')
+plt.title('Gastos com saúde vs Expectativa de Vida em 2014')
+plt.grid(True)
+plt.show()
+
+# PIB PER CAPITA E EXPECTATIVA DE VIDA
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Filtrar as colunas relevantes para o gráfico
+df_plot = df[['GDP', 'Life expectancy']]
+
+# Plotar o gráfico
+plt.figure(figsize=(10, 6))
+plt.scatter(df_plot['GDP'], df_plot['Life expectancy'])
+plt.xlabel('PIB per capita')
+plt.ylabel('Expectativa de Vida')
+plt.title('PIB per capita vs Expectativa de Vida')
+plt.grid(True)
 plt.show()
