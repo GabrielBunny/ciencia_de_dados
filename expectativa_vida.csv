@@ -1,4 +1,4 @@
-Country,Year,Status,Life expectancy ,Adult Mortality,infant deaths,Alcohol,percentage expenditure,Hepatitis B,Measles , BMI ,under-five deaths ,Polio,Total expenditure,Diphtheria , HIV/AIDS,GDP,Population, thinness  1-19 years, thinness 5-9 years,Income composition of resources,Schooling
+Country,Year,Status,Life expectancy,Adult Mortality,Infant deaths,Alcohol,percentage expenditure,Hepatitis B,Measles,BMI,under-five deaths,Polio,Total expenditure,Diphtheria , HIV/AIDS,GDP,Population, thinness  1-19 years, thinness 5-9 years,Income composition of resources,Schooling
 Afghanistan,2015,Developing,65,263,62,0.01,71.27962362,65,1154,19.1,83,6,8.16,65,0.1,584.25921,33736494,17.2,17.3,0.479,10.1
 Afghanistan,2014,Developing,59.9,271,64,0.01,73.52358168,62,492,18.6,86,58,8.18,62,0.1,612.696514,327582,17.5,17.5,0.476,10
 Afghanistan,2013,Developing,59.9,268,66,0.01,73.21924272,64,430,18.1,89,62,8.13,64,0.1,631.744976,31731688,17.7,17.7,0.47,9.9
@@ -31,7 +31,7 @@ Albania,2003,Developing,72.8,18,1,4.29,14.71928882,97,8,47.9,1,97,6.27,97,0.1,18
 Albania,2002,Developing,73.3,15,1,3.73,104.5169157,96,16,46.9,1,98,6.3,98,0.1,1453.642777,3511,2,2.1,0.67,10.7
 Albania,2001,Developing,73.6,14,1,4.25,96.20557078,96,18,46,1,97,6,97,0.1,1326.97339,36173,2.1,2.1,0.662,10.6
 Albania,2000,Developing,72.6,11,1,3.66,91.71154052,96,662,45,1,97,6.26,97,0.1,1175.788981,38927,2.1,2.2,0.656,10.7
-Algeria,2015,Developing,75.6,19,21,,0,95,63,59.5,24,95,,95,0.1,4132.76292,39871528,6,5.8,0.743,14.4
+Algeria,2015,Developing,75.6,19,21,0,0,95,63,59.5,24,95,0,95,0.1,4132.76292,39871528,6,5.8,0.743,14.4
 Algeria,2014,Developing,75.4,11,21,0.01,54.2373183,95,0,58.4,24,95,7.21,95,0.1,547.8517,39113313,6,5.8,0.741,14.4
 Algeria,2013,Developing,75.3,112,21,0.53,544.4507432,95,25,57.2,24,95,7.12,95,0.1,5471.866766,38338562,5.9,5.8,0.737,14.4
 Algeria,2012,Developing,75.1,113,21,0.66,555.9260834,95,18,56.1,24,95,6.14,95,0.1,5564.82566,37565847,5.9,5.8,0.732,14.4
