@@ -29,7 +29,7 @@ plt.axhline(media_mundial, color='red', linestyle='--', label='Média Mundial')
 
 # Adicionar rótulos e título ao gráfico
 plt.xlabel('Ano')
-plt.ylabel('Expectativa de Vida')
+plt.ylabel('Expectativa de Vida (Idade)')
 plt.title('Comparação da Expectativa de Vida ao longo do tempo')
 plt.legend()
 plt.grid(True)
