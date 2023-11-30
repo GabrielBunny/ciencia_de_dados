@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# eXPECTATIVA DE VIDA DO BRASIL, OS 5 MELHORES E A MÉDIA
+
 # Abrindo o arquivo csv
 df = pd.read_csv('expectativa_vida.csv')
 
@@ -37,94 +39,6 @@ plt.grid(True)
 # Exibir o gráfico
 plt.show()
 
-import matplotlib.pyplot as plt
-
-# Filtrar os dados para os países de interesse
-paises_interesse = ['Brazil', 'India', 'Nigeria', 'Pakistan', 'Democratic Republic of the Congo', 'Angola']
-
-# Filtrar os dados para os países de interesse
-df_interesse = df[df['Country'].isin(paises_interesse)]
-
-# Calcular a média mundial de mortes infantis
-media_mundial = df['Infant deaths'].mean()
-
-# Configurar o tamanho do gráfico
-plt.figure(figsize=(10, 6))
-
-# Plotar as mortes infantis em relação aos anos para cada país
-for pais in paises_interesse:
-    df_pais = df_interesse[df_interesse['Country'] == pais]
-    if pais == 'Brazil':
-        plt.plot(df_pais['Year'], df_pais['Infant deaths'], label=pais, color='black', linewidth=5)
-    else:
-        plt.plot(df_pais['Year'], df_pais['Infant deaths'], label=pais)
-
-# Plotar a média mundial como uma linha no gráfico
-plt.axhline(media_mundial, color='red', linestyle='--', label='Média Mundial')
-
-# Adicionar rótulos e título ao gráfico
-plt.xlabel('Ano')
-plt.ylabel('Mortes Infantis')
-plt.title('Comparação das Mortes Infantis ao longo do tempo')
-plt.legend()
-plt.grid(True)
-
-# Exibir o gráfico
-plt.show()
-
-# IDH POR PAÍSES DESENVOLVIDOS E SUBDESENVOLVIDOS
-
-# Filtrar os dados para os países de interesse
-paises_interesse = ['Brazil', 'United States', 'Germany', 'China', 'Afghanistan', 'Ethiopia']
-
-# Filtrar os dados para os países de interesse
-df_interesse = df[df['Country'].isin(paises_interesse)]
-
-# Configurar o tamanho do gráfico
-plt.figure(figsize=(10, 6))
-
-# Plotar o IDH em relação aos anos para cada país
-for pais in paises_interesse:
-    df_pais = df_interesse[df_interesse['Country'] == pais]
-    
-    if pais == 'Brazil':
-        plt.plot(df_pais['Year'], df_pais['Income composition of resources'], label=pais, color='black', linewidth=5)
-    else:
-        plt.plot(df_pais['Year'], df_pais['Income composition of resources'], label=pais)
-
-# Adicionar rótulos e título ao gráfico
-plt.xlabel('Ano')
-plt.ylabel('IDH')
-plt.title('Evolução do IIDH ao longo dos anos para países desenvolvidos e subdesenvolvidos')
-plt.legend()
-plt.grid(True)
-
-# Exibir o gráfico
-plt.show()
-
-# GASTOS COM SAÚDE E EXPECTATIVA DE VIDA
-
-import pandas as pd
-import matplotlib.pyplot as plt
-
-# Filtrar os dados para o ano de 2014
-df_2014 = df[df['Year'] == 2014]
-
-# Calcular a porcentagem de gastos com saúde em relação ao PIB per capita
-df_2014['expenditure percentage'] = df_2014['percentage expenditure'] / df_2014['GDP'] * 100
-
-# Filtrar as colunas relevantes para o gráfico
-df_plot = df_2014[['expenditure percentage', 'Life expectancy']]
-
-# Plotar o gráfico
-plt.figure(figsize=(10, 6))
-plt.scatter(df_plot['expenditure percentage'], df_plot['Life expectancy'])
-plt.xlabel('Porcentagem de gastos com saúde em relação ao PIB per capita (%)')
-plt.ylabel('Expectativa de Vida')
-plt.title('Gastos com saúde vs Expectativa de Vida em 2014')
-plt.grid(True)
-plt.show()
-
 # PIB PER CAPITA E EXPECTATIVA DE VIDA
 
 import pandas as pd
@@ -142,14 +56,12 @@ plt.title('PIB per capita vs Expectativa de Vida')
 plt.grid(True)
 plt.show()
 
-import pandas as pd
-import matplotlib.pyplot as plt
+# GASTOS COM SAÚDE E E. V.
 
 # Filtrar os dados para os anos de 2012, 2013 e 2014
 df_2012 = df[df['Year'] == 2012]
 df_2013 = df[df['Year'] == 2013]
 df_2014 = df[df['Year'] == 2014]
-
 
 # Calcular a porcentagem de gastos com saúde em relação ao PIB per capita em cada ano
 df_2012['expenditure percentage'] = df_2012['percentage expenditure'] / df_2012['GDP'] * 100
@@ -161,7 +73,7 @@ df_plot_2012 = df_2012[['expenditure percentage', 'Life expectancy']]
 df_plot_2013 = df_2013[['expenditure percentage', 'Life expectancy']]
 df_plot_2014 = df_2014[['expenditure percentage', 'Life expectancy']]
 
-# Plotar os gráficos para ambos os anos
+# Plotar os gráficos para os anos selecionados
 plt.figure(figsize=(10, 6))
 plt.scatter(df_plot_2012['expenditure percentage'], df_plot_2012['Life expectancy'], label='2012')
 plt.scatter(df_plot_2013['expenditure percentage'], df_plot_2013['Life expectancy'], label='2013')
