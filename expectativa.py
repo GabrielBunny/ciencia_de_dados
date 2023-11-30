@@ -141,3 +141,34 @@ plt.ylabel('Expectativa de Vida')
 plt.title('PIB per capita vs Expectativa de Vida')
 plt.grid(True)
 plt.show()
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Filtrar os dados para os anos de 2012, 2013 e 2014
+df_2012 = df[df['Year'] == 2012]
+df_2013 = df[df['Year'] == 2013]
+df_2014 = df[df['Year'] == 2014]
+
+
+# Calcular a porcentagem de gastos com saúde em relação ao PIB per capita em cada ano
+df_2012['expenditure percentage'] = df_2012['percentage expenditure'] / df_2012['GDP'] * 100
+df_2013['expenditure percentage'] = df_2013['percentage expenditure'] / df_2013['GDP'] * 100
+df_2014['expenditure percentage'] = df_2014['percentage expenditure'] / df_2014['GDP'] * 100
+
+# Filtrar as colunas relevantes para o gráfico para ambos os anos
+df_plot_2012 = df_2012[['expenditure percentage', 'Life expectancy']]
+df_plot_2013 = df_2013[['expenditure percentage', 'Life expectancy']]
+df_plot_2014 = df_2014[['expenditure percentage', 'Life expectancy']]
+
+# Plotar os gráficos para ambos os anos
+plt.figure(figsize=(10, 6))
+plt.scatter(df_plot_2012['expenditure percentage'], df_plot_2012['Life expectancy'], label='2012')
+plt.scatter(df_plot_2013['expenditure percentage'], df_plot_2013['Life expectancy'], label='2013')
+plt.scatter(df_plot_2014['expenditure percentage'], df_plot_2014['Life expectancy'], label='2014')
+plt.xlabel('Porcentagem de gastos com saúde em relação ao PIB per capita (%)')
+plt.ylabel('Expectativa de Vida')
+plt.title('Comparação dos Gastos com Saúde e Expectativa de Vida em 2012, 2013 e 2014')
+plt.grid(True)
+plt.legend()
+plt.show()
