@@ -22,7 +22,7 @@ plt.figure(figsize=(10, 6))
 for pais in paises_interesse:
     df_pais = df_interesse[df_interesse['Country'] == pais]
     if pais == 'Brazil':
-        plt.plot(df_pais['Year'], df_pais['Life expectancy'], label=pais, color='black', linewidth=5)
+        plt.plot(df_pais['Year'], df_pais['Life expectancy'], label=pais, color='black')
     else:
         plt.plot(df_pais['Year'], df_pais['Life expectancy'], label=pais)
 
